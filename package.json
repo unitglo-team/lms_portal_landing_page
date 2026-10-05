@@ -1,0 +1,11 @@
+{
+  "name": "portal-landing-page-lms",
+  "version": "1.0.0",
+  "private": true,
+  "description": "AI LMS Studio - Enterprise Portal Landing Page",
+  "scripts": {
+    "start": "npx serve . -l 3002",
+    "serve": "npx serve . -l 3002",
+    "dev": "npx serve . -l 3002"
+  }
+}

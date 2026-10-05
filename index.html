@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="description" content="AI LMS Studio - Enterprise AI-powered learning, simulation practice, assessment and workforce intelligence platform with secure offline learning.">
+  <meta name="theme-color" content="#090d16">
+  <title>AI LMS Studio - Enterprise AI-Powered Learning & Practice Platform</title>
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+
+  <!-- Enterprise Security / RBAC Notification Toast -->
+  <aside id="security-toast" class="security-toast" role="status" aria-live="polite">
+    <div class="toast-icon">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+        <path d="m9 12 2 2 4-4"/>
+      </svg>
+    </div>
+    <div class="toast-content">
+      <h4 id="toast-title">Security Gateway</h4>
+      <p id="toast-message">Checking RBAC entitlements...</p>
+    </div>
+  </aside>
+
+  <!-- Navigation Header -->
+  <header class="navbar" role="banner">
+    <div class="nav-container">
+      <a href="./index.html" class="brand-wrapper" aria-label="AI LMS Studio Homepage">
+        <div class="brand-icon" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+          </svg>
+        </div>
+        <div class="brand-text">
+          <span class="brand-name">AI LMS Studio</span>
+          <span class="brand-badge">Enterprise Edition</span>
+        </div>
+      </a>
+
+      <!-- Desktop Navigation -->
+      <nav class="desktop-nav" aria-label="Primary Navigation">
+        <ul class="nav-links">
+          <li><a href="#roles">Portals</a></li>
+          <li><a href="#capabilities">Capabilities</a></li>
+          <li><a href="#lifecycle">Progression</a></li>
+          <li><a href="#offline">Offline Learning</a></li>
+        </ul>
+      </nav>
+
+      <!-- Desktop Navigation Actions -->
+      <div class="nav-actions desktop-actions">
+        <div id="user-session-status" class="user-status-pill" style="display: none;" aria-live="polite">
+          <span class="status-dot"></span> Authenticated
+        </div>
+        <button id="nav-signin-btn" class="btn btn-primary btn-sm" aria-label="Sign in to platform">
+          Sign In
+        </button>
+      </div>
+
+      <!-- Mobile Hamburger Button -->
+      <button 
+        id="mobile-menu-toggle" 
+        class="mobile-menu-btn" 
+        aria-label="Toggle mobile menu" 
+        aria-expanded="false" 
+        aria-controls="mobile-nav-drawer"
+      >
+        <span class="hamburger-box">
+          <span class="hamburger-inner"></span>
+        </span>
+      </button>
+    </div>
+
+    <!-- Mobile Navigation Drawer Overlay Backdrop -->
+    <div id="mobile-nav-backdrop" class="mobile-nav-backdrop" aria-hidden="true"></div>
+
+    <!-- Mobile Navigation Drawer -->
+    <div id="mobile-nav-drawer" class="mobile-nav-drawer" aria-label="Mobile Navigation" aria-hidden="true">
+      <div class="mobile-nav-header">
+        <div class="brand-text">
+          <span class="brand-name">AI LMS Studio</span>
+          <span class="brand-badge">Enterprise Edition</span>
+        </div>
+        <button id="mobile-menu-close" class="mobile-menu-close" aria-label="Close navigation menu">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+
+      <nav class="mobile-nav-body">
+        <ul class="mobile-nav-links">
+          <li><a href="#roles" class="mobile-nav-item">Portals</a></li>
+          <li><a href="#capabilities" class="mobile-nav-item">Capabilities</a></li>
+          <li><a href="#lifecycle" class="mobile-nav-item">Progression</a></li>
+          <li><a href="#offline" class="mobile-nav-item">Offline Learning</a></li>
+        </ul>
+
+        <div class="mobile-nav-footer">
+          <div id="mobile-user-status" class="user-status-pill" style="display: none;" aria-live="polite">
+            <span class="status-dot"></span> Authenticated
+          </div>
+          <button id="mobile-signin-btn" class="btn btn-primary" style="width: 100%;" aria-label="Sign in to platform">
+            Sign In
+          </button>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main role="main">
+    <!-- Hero Section -->
+    <section class="hero-section" aria-labelledby="hero-heading">
+      <div class="hero-glow-bg" aria-hidden="true"></div>
+      <div class="container">
+        <div class="hero-content" data-reveal="fade-up">
+          <div class="hero-pill">
+            <span class="hero-pill-dot"></span>
+            <span>AI-Powered Learning, Practice & Intelligence</span>
+          </div>
+          <h1 id="hero-heading" class="hero-title">
+            Turn Learning Into Measurable Skill Growth
+          </h1>
+          <p class="hero-subtitle">
+            Learn, practice, assess and improve with AI-powered simulations, adaptive learning and measurable performance insights.
+          </p>
+          <div class="hero-ctas">
+            <button id="hero-signin-btn" class="btn btn-primary hero-btn" aria-label="Sign in to your account">
+              <span>Sign In</span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+              </svg>
+            </button>
+            <a href="#capabilities" class="btn btn-secondary hero-btn" aria-label="Explore platform capabilities">
+              Explore Platform
+            </a>
+          </div>
+
+          <div class="trust-badges" aria-label="Security and Architecture Specifications">
+            <div class="trust-item">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+              </svg>
+              <span>Strict Multi-Tenant Isolation</span>
+            </div>
+            <div class="trust-item">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect width="18" height="11" x="3" y="11" rx="2" ry="2"/>
+                <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+              </svg>
+              <span>Role-Based Access Control (RBAC)</span>
+            </div>
+            <div class="trust-item">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="12" cy="12" r="10"/>
+                <path d="m4.93 4.93 4.24 4.24"/>
+                <path d="m14.83 9.17 4.24-4.24"/>
+                <path d="m14.83 14.83 4.24 4.24"/>
+                <path d="m9.17 14.83-4.24 4.24"/>
+              </svg>
+              <span>Encrypted Offline Learning Storage</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Role-Based Platform Section -->
+    <section id="roles" class="roles-section" aria-labelledby="roles-heading">
+      <div class="container">
+        <div class="section-header" data-reveal="fade-up">
+          <span class="section-tag">Role Entry</span>
+          <h2 id="roles-heading" class="section-title">Role-Based Platform Entry</h2>
+          <p class="section-description">
+            Dedicated enterprise portals tailored for governance, curriculum authoring, team tracking, and interactive simulation practice.
+          </p>
+        </div>
+
+        <div class="roles-grid" data-stagger>
+          <!-- 1. Organization Admin -->
+          <article class="role-card stagger-item" aria-labelledby="role-orgadmin-title">
+            <span class="role-badge">Governance</span>
+            <div class="role-card-header">
+              <div class="role-icon-box icon-admin" aria-hidden="true">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z"/>
+                  <path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2"/>
+                  <path d="M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2"/>
+                  <path d="M10 6h4"/>
+                  <path d="M10 10h4"/>
+                  <path d="M10 14h4"/>
+                  <path d="M10 18h4"/>
+                </svg>
+              </div>
+              <h3 id="role-orgadmin-title" class="role-title">Organization Admin</h3>
+            </div>
+            <p class="role-description">
+              Govern learning, users, content, assignments, compliance and organization-wide intelligence.
+            </p>
+            <div class="role-card-footer">
+              <button id="btn-role-orgadmin" class="role-cta-btn" aria-label="Access Organization Admin Portal">
+                <span>Organization Admin Portal</span>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M5 12h14M12 5l7 7-7 7"/>
+                </svg>
+              </button>
+              <span class="role-guard-note">RBAC Protected • Multi-Tenant Enforced</span>
+            </div>
+          </article>
+
+          <!-- 2. Trainer Manager -->
+          <article class="role-card stagger-item" aria-labelledby="role-trainer-title">
+            <span class="role-badge">Curriculum & AI</span>
+            <div class="role-card-header">
+              <div class="role-icon-box icon-trainer" aria-hidden="true">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
+                  <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
+                </svg>
+              </div>
+              <h3 id="role-trainer-title" class="role-title">Trainer Manager</h3>
+            </div>
+            <p class="role-description">
+              Create courses, lessons, assessments, AI personas, scenarios and simulations.
+            </p>
+            <div class="role-card-footer">
+              <button id="btn-role-trainer" class="role-cta-btn" aria-label="Access Trainer Manager Portal">
+                <span>Trainer Manager Portal</span>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M5 12h14M12 5l7 7-7 7"/>
+                </svg>
+              </button>
+              <span class="role-guard-note">Authoring & Governance Workflow</span>
+            </div>
+          </article>
+
+          <!-- 3. Team Manager -->
+          <article class="role-card stagger-item" aria-labelledby="role-manager-title">
+            <span class="role-badge">Supervision</span>
+            <div class="role-card-header">
+              <div class="role-icon-box icon-manager" aria-hidden="true">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
+                  <circle cx="9" cy="7" r="4"/>
+                  <path d="M22 21v-2a4 4 0 0 0-3-3.87"/>
+                  <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                </svg>
+              </div>
+              <h3 id="role-manager-title" class="role-title">Team Manager</h3>
+            </div>
+            <p class="role-description">
+              Assign learning, monitor team progress and support learner development.
+            </p>
+            <div class="role-card-footer">
+              <button id="btn-role-manager" class="role-cta-btn" aria-label="Access Team Manager Portal">
+                <span>Team Manager Portal</span>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M5 12h14M12 5l7 7-7 7"/>
+                </svg>
+              </button>
+              <span class="role-guard-note">Team Cohort Analytics & Assign</span>
+            </div>
+          </article>
+
+          <!-- 4. Learner -->
+          <article class="role-card stagger-item" aria-labelledby="role-learner-title">
+            <span class="role-badge">Learning & Practice</span>
+            <div class="role-card-header">
+              <div class="role-icon-box icon-learner" aria-hidden="true">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 20h9"/>
+                  <path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/>
+                </svg>
+              </div>
+              <h3 id="role-learner-title" class="role-title">Learner</h3>
+            </div>
+            <p class="role-description">
+              Learn, practice with AI, complete assessments and track skill growth.
+            </p>
+            <div class="role-card-footer">
+              <button id="btn-role-learner" class="role-cta-btn" aria-label="Access Learner Portal">
+                <span>Learner Portal</span>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M5 12h14M12 5l7 7-7 7"/>
+                </svg>
+              </button>
+              <span class="role-guard-note">Simulation Hub & Certification</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Platform Capabilities Section -->
+    <section id="capabilities" class="capabilities-section" aria-labelledby="cap-heading">
+      <div class="container">
+        <div class="section-header" data-reveal="fade-up">
+          <span class="section-tag">Architecture</span>
+          <h2 id="cap-heading" class="section-title">Core Platform Capabilities</h2>
+          <p class="section-description">
+            Production-engineered modules operating across the enterprise learning lifecycle.
+          </p>
+        </div>
+
+        <div class="capabilities-grid" data-stagger>
+          <!-- Learning -->
+          <div class="capability-column stagger-item">
+            <div class="capability-header">
+              <div class="capability-icon-wrap" aria-hidden="true">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--color-primary-light)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1-2.5-2.5Z"/>
+                  <path d="M6 6h10"/>
+                  <path d="M6 10h10"/>
+                </svg>
+              </div>
+              <h3>Learning</h3>
+            </div>
+            <ul class="capability-list">
+              <li class="capability-item">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                <span>Courses & Curriculum</span>
+              </li>
+              <li class="capability-item">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                <span>Modular Video & Text Lessons</span>
+              </li>
+              <li class="capability-item">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                <span>Structured Learning Paths</span>
+              </li>
+              <li class="capability-item">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                <span>Theory & Knowledge Assessments</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- AI Practice -->
+          <div class="capability-column stagger-item">
+            <div class="capability-header">
+              <div class="capability-icon-wrap" aria-hidden="true">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--color-secondary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 8V4H8"/>
+                  <rect width="16" height="12" x="4" y="8" rx="2"/>
+                  <path d="M2 14h2M20 14h2M15 13v2M9 13v2"/>
+                </svg>
+              </div>
+              <h3>AI Practice</h3>
+            </div>
+            <ul class="capability-list">
+              <li class="capability-item">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                <span>AI Behavioral Personas</span>
+              </li>
+              <li class="capability-item">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                <span>Dynamic Branching Scenarios</span>
+              </li>
+              <li class="capability-item">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                <span>Interactive AI Customer Simulations</span>
+              </li>
+              <li class="capability-item">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                <span>Voice & Video Practice Sessions</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Intelligence -->
+          <div class="capability-column stagger-item">
+            <div class="capability-header">
+              <div class="capability-icon-wrap" aria-hidden="true">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--color-accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M3 3v18h18"/>
+                  <path d="m19 9-5 5-4-4-3 3"/>
+                </svg>
+              </div>
+              <h3>Intelligence</h3>
+            </div>
+            <ul class="capability-list">
+              <li class="capability-item">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                <span>Automated Matrix Evaluation</span>
+              </li>
+              <li class="capability-item">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                <span>Communication Analytics</span>
+              </li>
+              <li class="capability-item">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                <span>Skill Gap & Radar Diagnostics</span>
+              </li>
+              <li class="capability-item">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                <span>Adaptive Learning Progression</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Governance -->
+          <div class="capability-column stagger-item">
+            <div class="capability-header">
+              <div class="capability-icon-wrap" aria-hidden="true">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--color-warning)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                </svg>
+              </div>
+              <h3>Governance</h3>
+            </div>
+            <ul class="capability-list">
+              <li class="capability-item">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                <span>Organization Governance</span>
+              </li>
+              <li class="capability-item">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                <span>Content Review & Approvals</span>
+              </li>
+              <li class="capability-item">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                <span>Mandatory Assignments</span>
+              </li>
+              <li class="capability-item">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                <span>Audit Logs & PDF Certificates</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Role-Specific Value & Architecture Flow -->
+    <section id="lifecycle" class="flow-section" aria-labelledby="flow-heading">
+      <div class="container">
+        <div class="section-header" data-reveal="fade-up">
+          <span class="section-tag">Value Pipeline</span>
+          <h2 id="flow-heading" class="section-title">Enterprise Responsibility & Mastery Flow</h2>
+          <p class="section-description">
+            Hierarchical coordination connecting administrative governance to individual skill mastery.
+          </p>
+        </div>
+
+        <!-- Role Hierarchy Flow -->
+        <div class="flow-hierarchy" data-stagger aria-label="Governance Hierarchy">
+          <div class="hierarchy-step stagger-item">
+            <span class="step-num">STAGE 01</span>
+            <div class="step-role">Organization Admin</div>
+            <div class="step-arrow" aria-hidden="true">↓</div>
+            <div class="step-action">Govern & Assign</div>
+          </div>
+          <div class="hierarchy-step stagger-item">
+            <span class="step-num">STAGE 02</span>
+            <div class="step-role">Trainer Manager</div>
+            <div class="step-arrow" aria-hidden="true">↓</div>
+            <div class="step-action">Create & Author</div>
+          </div>
+          <div class="hierarchy-step stagger-item">
+            <span class="step-num">STAGE 03</span>
+            <div class="step-role">Team Manager</div>
+            <div class="step-arrow" aria-hidden="true">↓</div>
+            <div class="step-action">Guide & Monitor</div>
+          </div>
+          <div class="hierarchy-step stagger-item">
+            <span class="step-num">STAGE 04</span>
+            <div class="step-role">Learner</div>
+            <div class="step-arrow" aria-hidden="true">↓</div>
+            <div class="step-action">Learn & Practice</div>
+          </div>
+        </div>
+
+        <!-- Phase 2–9 Architecture Lifecycle -->
+        <div class="architecture-progression" data-reveal="fade-up" aria-label="Phase 2 to 9 Skill Growth Architecture">
+          <div class="progression-title">
+            Phase 2–9 Systematic Mastery Lifecycle
+          </div>
+          <div class="progression-track">
+            <span class="progression-node">Learning</span>
+            <span class="progression-arrow" aria-hidden="true">→</span>
+            <span class="progression-node">Practice</span>
+            <span class="progression-arrow" aria-hidden="true">→</span>
+            <span class="progression-node">Assessment</span>
+            <span class="progression-arrow" aria-hidden="true">→</span>
+            <span class="progression-node">AI Simulation</span>
+            <span class="progression-arrow" aria-hidden="true">→</span>
+            <span class="progression-node">Evaluation</span>
+            <span class="progression-arrow" aria-hidden="true">→</span>
+            <span class="progression-node">Skill Gap</span>
+            <span class="progression-arrow" aria-hidden="true">→</span>
+            <span class="progression-node">Adaptive Practice</span>
+            <span class="progression-arrow" aria-hidden="true">→</span>
+            <span class="progression-node mastery">Mastery</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Offline Video Learning & Security Architecture Section -->
+    <section id="offline" class="offline-section" aria-labelledby="offline-heading">
+      <div class="container">
+        <div class="section-header" data-reveal="fade-up">
+          <span class="section-tag">Security Architecture</span>
+          <h2 id="offline-heading" class="section-title">Encrypted Offline Learning Media Protection</h2>
+          <p class="section-description">
+            Learners can securely download authorized course lecture videos for offline study without exposing static storage URLs or unencrypted files.
+          </p>
+        </div>
+
+        <!-- Security Architecture Pillars -->
+        <div class="security-pillars" data-stagger>
+          <div class="pillar-card stagger-item">
+            <h4>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              <span>No Public MP4 URLs</span>
+            </h4>
+            <p>
+              Media access is mediated via short-lived signed tokens. No permanent S3 or Cloudinary storage URLs are rendered in source code.
+            </p>
+          </div>
+          <div class="pillar-card stagger-item">
+            <h4>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+              <span>AES-GCM Encryption at Rest</span>
+            </h4>
+            <p>
+              Offline video packages are stored in browser IndexedDB encrypted with AES-GCM (256-bit) using keys bound to the authenticated learner session and tenant.
+            </p>
+          </div>
+          <div class="pillar-card stagger-item">
+            <h4>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              <span>Expiring Entitlements & DRM Ready</span>
+            </h4>
+            <p>
+              Offline licenses enforce TTL limits (14 days) before requiring online re-validation. The media protection interface is isolated to allow hardware DRM (EME) upgrades.
+            </p>
+          </div>
+        </div>
+
+        <!-- Live Interactive Offline Course Simulation Demo -->
+        <div class="demo-container" data-reveal="fade-up">
+          <div class="demo-header">
+            <div class="demo-title-area">
+              <h3>Live Demonstration: Learner Course Experience</h3>
+              <p>Module 2: Consultative Selling & Discovery Call Simulation • Video Lecture 101</p>
+            </div>
+            <div class="demo-controls-bar">
+              <button id="network-toggle" class="network-toggle-btn" aria-label="Toggle network simulation">
+                <span>🌐 Network: Online</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="demo-player-grid">
+            <!-- Video Player Screen -->
+            <div class="video-screen-wrapper">
+              <video
+                id="video-player"
+                class="video-element"
+                style="display: none;"
+                controls
+                controlsList="nodownload"
+                oncontextmenu="return false;"
+                aria-label="Offline Demonstration Video Player"
+              ></video>
+              <div id="video-placeholder" class="video-placeholder-overlay">
+                <div class="video-play-pulse" aria-hidden="true">
+                  <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <polygon points="5 3 19 12 5 21 5 3"/>
+                  </svg>
+                </div>
+                <span>Click "Start Playback" below to stream or play decrypted offline package.</span>
+              </div>
+            </div>
+
+            <!-- Actions & Status Panel -->
+            <div class="demo-actions-panel">
+              <div>
+                <span class="status-panel-tag">
+                  Learner Entitlement Status
+                </span>
+
+                <div class="download-status-card">
+                  <div class="status-row">
+                    <span class="status-label">Package State:</span>
+                    <span id="demo-status-badge" class="status-val">Not Downloaded</span>
+                  </div>
+                  <div class="status-row">
+                    <span class="status-label">Storage Size:</span>
+                    <span id="demo-size-val" class="status-val">--</span>
+                  </div>
+                  <div class="status-row">
+                    <span class="status-label">Last Authorization:</span>
+                    <span id="demo-auth-val" class="status-val">Unverified</span>
+                  </div>
+
+                  <div id="demo-progress-container" style="display: none;">
+                    <div class="progress-track" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                      <div id="demo-progress-bar" class="progress-fill"></div>
+                    </div>
+                    <div class="progress-label-row">
+                      <span>Encrypting & Storing in IndexedDB...</span>
+                      <span id="demo-progress-pct">0%</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="demo-btn-stack">
+                <button id="demo-play-btn" class="btn btn-secondary btn-sm demo-action-btn">
+                  ▶ Start Protected Playback
+                </button>
+                <button id="demo-download-btn" class="btn btn-primary btn-sm demo-action-btn">
+                  Download for Offline (18.4 MB)
+                </button>
+                <button id="demo-remove-btn" class="btn btn-secondary btn-sm demo-action-btn btn-danger-outline" style="display: none;">
+                  Remove Download
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer" role="contentinfo" data-reveal="fade-up">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="brand-wrapper">
+          <div class="brand-icon" aria-hidden="true">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+            </svg>
+          </div>
+          <div class="footer-brand-text">
+            <div class="footer-brand-title">AI LMS Studio</div>
+            <div class="footer-brand-desc">Enterprise Learning, Simulation & Workforce Intelligence OS</div>
+          </div>
+        </div>
+
+        <nav class="footer-links-nav" aria-label="Footer Navigation">
+          <a href="#roles" class="footer-link">Role Portals</a>
+          <a href="#capabilities" class="footer-link">Capabilities</a>
+          <a href="#lifecycle" class="footer-link">Mastery Architecture</a>
+          <a href="#offline" class="footer-link">Offline Security</a>
+        </nav>
+      </div>
+
+      <div class="footer-copy">
+        &copy; 2026 AI LMS Studio. Multi-Tenant Isolated. All Rights Reserved. Built on existing Phase 2–9 Enterprise Architecture.
+      </div>
+    </div>
+  </footer>
+
+  <script src="./offline-storage.js"></script>
+  <script src="./auth-rbac.js"></script>
+  <script src="./app.js"></script>
+</body>
+</html>
